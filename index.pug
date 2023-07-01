@@ -1,0 +1,47 @@
+#app.full(v-cloak)
+	#game.flex.full.center.middle
+	#ui.flex.full.center.middle.no-pointer-events(v-if="hasGame")
+		#uiBox.text-white(:style="styleUIBox")
+			transition(name="state")
+				#stateLoaded.column.full.text-center(v-if="state == 'loaded'" :key="state")
+					.col.relative
+						.column.full.middle
+							.col-7.column.center
+								h1#logo
+									span Câu 
+									span Đố 
+									span Ma 
+									span Thuật
+							.col-5.column
+								button.px-5.py-3(@click="play()") CHƠI
+								button.px-5.py-3.mt-4(@click="state = 'about'") LỜI TÁC GIẢ
+					.col-0
+						.mb-3
+							| Làm với
+							.heart-icon
+							| của Cam :")
+				.column.full.center(v-else-if="state == 'about'")
+					.col.scroll.p-3.flex.middle
+						| Game mới làm tuy không được đẹp như bản gốc nhưng được cái không bị thoát ra khi đang chơi 😂😂
+						br
+						br
+						| Có thể mở âm thanh lên chơi cho hay
+						br
+						br
+						| Chơi game bui bẻ nha 😋
+						br
+						br
+						| =)))
+					.col.flex.middle.center
+						button(@click="state = 'loaded'") Quay lại
+				.row(v-else-if="state == 'play'" :key="state")
+					.col-4.text-center
+						p.mt-4.mb-0 Điểm cao
+						h3.mt-3 {{highScore2}}
+					.col-4.text-center
+						p.mt-4.mb-0 Điểm
+						h1.mt-0 {{score2}}
+					.col-4.pt-2.text-right
+						button.mt-4.mr-4(:disabled="!canRestart || !score" @click="fn.restart()") Chơi lại
+
+	.full(v-if="!isFullscreen" @mousedown="fullscreen()")

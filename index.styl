@@ -1,0 +1,227 @@
+*
+*:before
+*:after
+	box-sizing border-box
+	vertical-align middle
+body
+	margin 0
+	font-family "Segoe UI", sans-serif
+	font-size 18px
+	line-height 1.4
+	overflow hidden
+	user-select none
+:focus
+	outline 0
+
+#app
+	background #000
+[v-cloak]
+	display none
+canvas
+#stateLoaded
+	background url("assets/bg.jpg") 0 0/cover no-repeat
+#uiBox
+	perspective 1px
+	> *
+		pointer-events auto
+#logo
+	font-family "Sedgwick Ave Display"
+	span
+		&:nth-child(1)
+			color #dc3545
+		&:nth-child(2)
+			color #ffc107
+		&:nth-child(3)
+			color #28a745
+		&:nth-child(4)
+			color #007bff
+.state-enter-active
+.state-leave-active
+	transition opacity .5s
+.state-enter
+.state-leave-to
+	opacity 0
+.heart-icon
+	width 20px
+	height 20px
+	margin 0 5px
+	display inline-block
+	background url("http://i.imgur.com/HA07qQzr.png") center/contain no-repeat
+
+.ui
+	padding 4px 12px
+	border solid 2px #ccc
+	border-radius 8px
+	font-family "Segoe UI"
+	font-size 18px
+	background #eee
+	color #333
+	box-shadow 0px 0px 0px 2px #fff inset
+button
+	@extend .ui
+	font-weight bold
+	&:hover
+		border-color #bbb
+		background #ddd
+		box-shadow 0px 0px 0px 2px #f8f8f8 inset
+	&:active
+		border-color #aaa
+		background #ccc
+		box-shadow 0px 0px 0px 2px #ddd inset
+	&:disabled
+		border-color #ccc !important
+		background #eee !important
+		box-shadow 0px 0px 0px 2px #fff inset !important
+		color #888 !important
+		opacity .5
+input
+	@extend .ui
+	background #fafafa
+
+.row
+	display flex
+	flex-direction row
+	flex-wrap nowrap
+	&.reverse
+		flex-direction row-reverse
+.column
+	display flex
+	flex-direction column
+	flex-wrap nowrap
+	&.reverse
+		flex-direction column-reverse
+for i in 1..12
+	val = round(i/12*100%, 4) !important
+	.col-{i}
+		flex-basis val
+	.row> .col-{i}
+		width val
+	.column> .col-{i}
+		height val
+.col
+	flex-grow 1
+	min-height 0
+.col-0
+	flex-grow 0
+.start
+	justify-content flex-start
+.center
+	justify-content center
+.end
+	justify-content flex-end
+.between
+	justify-content space-between
+.around
+	justify-content space-around
+.evenly
+	justify-content space-evenly
+.start
+	justify-content flex-start
+.center
+	justify-content center
+.end
+	justify-content flex-end
+.top
+	align-items flex-start
+.middle
+	align-items center
+.bottom
+	align-items flex-end
+.stretch
+	align-items stretch
+.start-self
+	margin-right auto
+.center-self
+	margin-left auto
+	margin-right auto
+.end-self
+	margin-left auto
+.top-self
+	align-self flex-start
+.middle-self
+	align-self center
+.bottom-self
+	align-self flex-end
+.full
+	position absolute
+	top 0
+	left 0
+	width 100%
+	height 100% !important
+	z-index 0
+.absolute
+	position absolute
+.relative
+	position relative
+.fixed
+	position fixed
+for dis in block inline-block inline flex
+	.{dis}
+		display dis
+.hidden
+	display none !important
+for i in 0..5
+	.z-{i}
+		z-index i
+	if i
+		.-z-{i}
+			z-index -(i)
+.scroll
+	overflow auto
+	scroll-behavior smooth
+	&.tbody
+		overflow overlay
+.no-scroll
+	overflow hidden
+.wrap
+	flex-wrap wrap
+.nowrap
+	flex-wrap nowrap
+.text-wrap
+	white-space normal
+	word-break break-word
+.text-nowrap
+	white-space nowrap
+.text-ellipsis
+	overflow hidden
+	text-overflow ellipsis
+	white-space pre
+.pointer-events
+	pointer-events auto
+.no-pointer-events
+	pointer-events none
+.text-left
+	text-align left
+.text-center
+	text-align center
+.text-right
+	text-align right
+.text-white
+	color #fff
+for prop in padding margin
+	p = substr(prop 0 1)
+	for val, size in 50 20 10 5 1 0
+		size = 5 - size
+		arr = p is "m" ? (-1 1) : (1)
+		for i in arr
+			if i is 1 or i is -1 and size
+				s = i is 1 ? "" : "-"
+				val2 = (val*i)px !important
+				.{s}{p}-{size}
+					{prop} val2
+				.{s}{p}x-{size}
+					{prop}-left val2
+					{prop}-right val2
+				.{s}{p}y-{size}
+					{prop}-top val2
+					{prop}-bottom val2
+				.{s}{p}t-{size}
+					{prop}-top val2
+				.{s}{p}r-{size}
+					{prop}-right val2
+				.{s}{p}b-{size}
+					{prop}-bottom val2
+				.{s}{p}l-{size}
+					{prop}-left val2
+.m-auto
+	margin auto
